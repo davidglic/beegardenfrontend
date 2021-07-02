@@ -7,7 +7,8 @@ class ArticlesList extends Component {
         return (
             <div>
                 <h1>Artilces List here Here</h1>
-                
+                <Article />
+                <NewsArticle />
             
             </div>
         )

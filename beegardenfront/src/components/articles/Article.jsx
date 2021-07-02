@@ -1,6 +1,6 @@
-import Article from 'react'
+import React from 'react'
 
-const Header = (props) => {
+const Article = (props) => {
     return (
         <div>
             <h1>Article Here</h1>
