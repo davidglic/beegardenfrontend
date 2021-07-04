@@ -12,7 +12,7 @@ import NewsContainer from './components/articles/NewsContainer';
 import axios from 'axios';
 // import Footer from './components/Footer'
 
-const apiRoute = "http://localhost:8000/articles"
+const apiRoute = "http://localhost:8000/"
 //http://localhost:8000/articles/howto/?format=json
 
 class App extends Component {
@@ -24,11 +24,15 @@ class App extends Component {
   }
 
  async componentDidMount() {
-   const newsItems = await axios.get(`${apiRoute}/news`)
+   const newsItems = await axios.get(`${apiRoute}articles/news`)
    console.log(newsItems.data)
    this.setState({
      newsArticles: newsItems.data
    })
+   const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
+   console.log(logintest)
+   const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
+   console.log(updatetest)
   }
 
   render() {
