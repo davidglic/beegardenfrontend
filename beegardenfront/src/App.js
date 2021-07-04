@@ -29,10 +29,16 @@ class App extends Component {
    this.setState({
      newsArticles: newsItems.data
    })
-   const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
-   console.log(logintest)
-   const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
-   console.log(updatetest)
+  //  const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
+  //  console.log(logintest)
+  //  const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
+  //  console.log(updatetest)
+  //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
+  //  console.log(deleteTest)
+  const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
+  const createTest = await axios.post(`${apiRoute}create/`, newAccount)
+   console.log(createTest.data)
+  
   }
 
   render() {
