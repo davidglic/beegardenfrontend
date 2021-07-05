@@ -9,9 +9,9 @@ const Header = (props) => {
             <img src={headerBee} />
             </div>
             <div className="header-right">
-                <div className="header-link">About</div>
-                <div className="header-link">Articles/HowTos</div>
-                <div className="header-link">Login/Register</div>
+                <a href="#" className="header-link">About</a>
+                <a href="#" className="header-link">Articles/HowTos</a>
+                <a href="#" className="header-link">Login/Register</a>
             </div>
 
         </div>

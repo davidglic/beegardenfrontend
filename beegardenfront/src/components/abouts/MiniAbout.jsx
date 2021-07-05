@@ -9,7 +9,7 @@ const MiniAbout = (props) => {
     return (
         <div className="mini-about-container">
             <div className="mini-about-wrapper">
-                <h2 className="mini-about header">What are Little Bee Gardens?</h2>
+                <h3 className="mini-about header">What are Little Bee Gardens?</h3>
                 
                 <div className="mini-about-content">
                 <img src={beeOnClover} className="mini-about-img"/>
@@ -20,7 +20,7 @@ const MiniAbout = (props) => {
             </div>
 
             <div className="mini-about-wrapper">
-                <h2 className="mini-about header">How to build a Little bee garden</h2>
+                <h3 className="mini-about header">How to build a Little bee garden</h3>
                 
                 <div className="mini-about-content">
                 <img src={beeOnClover} className="mini-about-img"/>
@@ -31,7 +31,7 @@ const MiniAbout = (props) => {
             </div>
 
             <div className="mini-about-wrapper">
-                <h2 className="mini-about header">Protecting pollinators from chemical exposure.</h2>
+                <h3 className="mini-about header">Protecting pollinators from chemical exposure.</h3>
                 
                 <div className="mini-about-content">
                 <img src={beeOnClover} className="mini-about-img"/>

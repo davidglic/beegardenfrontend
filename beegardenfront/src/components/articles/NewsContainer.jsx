@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewsArticle from './NewsArticle'
+import './news.css'
 
 class NewsContainer extends Component {
     constructor(props) {
@@ -9,10 +10,12 @@ class NewsContainer extends Component {
     render () {
         return (
             <div className="news-stream-wrapper">
-                <h1>NewsContainer here Here</h1>
+                <h2 className="sub-header">Announcements</h2>
+                <div className="news-stream">
                 {this.props.newsArticles.map(article => {
                     console.log(article)
                     return (<NewsArticle article={article}/>)})}
+                </div>
             </div>
         )
 
