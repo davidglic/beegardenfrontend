@@ -19,6 +19,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
+      userEmail: '',
       newsArticles: []
     }
   }
@@ -35,15 +36,16 @@ class App extends Component {
   //  console.log(updatetest)
   //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
   //  console.log(deleteTest)
-  const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
-  const createTest = await axios.post(`${apiRoute}create/`, newAccount)
-   console.log(createTest.data)
+  // const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
+  // const createTest = await axios.post(`${apiRoute}create/`, newAccount)
+  //  console.log(createTest.data)
   
   }
 
   render() {
     return (
       <div className="App">
+        {/* Landing Route */}
         <Route 
           path="/"
           exact render={() =>
@@ -55,6 +57,13 @@ class App extends Component {
           </div>
           }
         />
+
+        {/* Article List Route */}
+
+
+        {/* About Route */}
+
+
       </div>
     );
 
