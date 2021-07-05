@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Footer from './components/Footer';
 import MiniAbout from './components/abouts/MiniAbout';
 import ArticlesList from './components/articles/ArticlesList';
+import Article from './components/articles/Article';
 import NewsContainer from './components/articles/NewsContainer';
 import axios from 'axios';
 // import Footer from './components/Footer'
@@ -68,6 +69,14 @@ class App extends Component {
           } />
 
         {/* About Route */}
+
+        {/* Article Route */}
+        <Route 
+          path='/article/:id'
+          render={(props) =>
+          <Article {...props}/>
+          }
+        />
 
         <Footer />
       </div>

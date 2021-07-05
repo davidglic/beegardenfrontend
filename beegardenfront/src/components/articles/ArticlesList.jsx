@@ -33,25 +33,37 @@ class ArticlesList extends Component {
         
     render () {
         return (
-            <div>
-                <h2>Articles</h2>
-                <div>
+            <div className="main-wrapper">
+                
+                <div className="article-list">
+                    <h2>Articles</h2>
                     {this.state.articles.map(article => {
                         return (
-                            <div>
-                                <Link to={`/article/${article.id}`}>{article.title}</Link>
-                                <div>{article.description}</div>
+                            <div className="article-wrapper">
+                                
+                                <img className="thumbnail" src={article.thumbnail}/>
+                                <div>
+                                    <Link to={`/article/${article.id}`}>{article.title}</Link>
+                                    <div>{article.description}</div>
+                                </div>
+                                
                             </div>
                         )
                     })}
                 </div>
-                <h2>How Tos</h2>
-                <div>
-                {this.state.howtos.map(article => {
+                
+                <div className="howto-list">
+                    <h2>How Tos</h2>
+                    {this.state.howtos.map(article => {
                         return (
-                            <div>
-                                <Link to={`/article/${article.id}`}>{article.title}</Link>
-                                <div>{article.description}</div>
+                            <div className="article-wrapper">
+                                
+                                <img className="thumbnail" src={article.thumbnail}/>
+                                <div>
+                                    <Link to={`/article/${article.id}`}>{article.title}</Link>
+                                    <div>{article.description}</div>
+                                </div>
+                                
                             </div>
                         )
                     })}

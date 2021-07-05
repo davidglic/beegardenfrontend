@@ -1,0 +1,21 @@
+.main-wrapper {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article-wrapper {
+    display: flex;
+    margin-top: 15px;
+    margin: 15px;
+    border: black 3px solid;
+    border-radius: 20px;
+
+}
+
+.thumbnail {
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    
+}

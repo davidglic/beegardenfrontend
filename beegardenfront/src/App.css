@@ -10,6 +10,7 @@
 .header-left {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header-left img {

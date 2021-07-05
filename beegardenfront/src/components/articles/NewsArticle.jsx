@@ -6,7 +6,7 @@ const NewsArticle = (props) => {
     const article = props.article
     const cleanContent = DOMPurify.sanitize(props.article.content)
     return (
-        <div className="article-wrapper">
+        <div className="news-wrapper">
             
             <h3>{article.title}</h3>
             {ReactHtmlParser(cleanContent)}
