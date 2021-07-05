@@ -10,7 +10,7 @@ const Header = (props) => {
             </div>
             <div className="header-right">
                 <a href="#" className="header-link">About</a>
-                <a href="#" className="header-link">Articles/HowTos</a>
+                <a href="/articles" className="header-link">Articles/HowTos</a>
                 <a href="#" className="header-link">Login/Register</a>
             </div>
 

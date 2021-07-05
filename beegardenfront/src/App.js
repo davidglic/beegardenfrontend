@@ -26,7 +26,7 @@ class App extends Component {
 
  async componentDidMount() {
    const newsItems = await axios.get(`${apiRoute}articles/news`)
-   console.log(newsItems.data)
+   
    this.setState({
      newsArticles: newsItems.data
    })
@@ -45,25 +45,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         {/* Landing Route */}
         <Route 
           path="/"
           exact render={() =>
           <div>
-            <Header />
             <MiniAbout />
             <NewsContainer newsArticles={this.state.newsArticles}/>
-            <Footer />
+            
           </div>
           }
         />
 
         {/* Article List Route */}
-
+        <Route
+          path='/articles'
+          render={() =>
+          <div>
+            <ArticlesList />
+          </div>
+          } />
 
         {/* About Route */}
 
-
+        <Footer />
       </div>
     );
 
