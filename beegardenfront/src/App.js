@@ -10,6 +10,7 @@ import MiniAbout from './components/abouts/MiniAbout';
 import ArticlesList from './components/articles/ArticlesList';
 import Article from './components/articles/Article';
 import NewsContainer from './components/articles/NewsContainer';
+import About from './components/abouts/About';
 import axios from 'axios';
 // import Footer from './components/Footer'
 
@@ -69,6 +70,10 @@ class App extends Component {
           } />
 
         {/* About Route */}
+          <Route 
+            path='/about'
+            render={() => <About />}
+          />
 
         {/* Article Route */}
         <Route 

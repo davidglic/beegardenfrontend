@@ -15,7 +15,7 @@ const Header = (props) => {
             <img src={headerBee} />
             </div>
             <div className="header-right">
-                <a href="#" className="header-link">About</a>
+                <a href="/about" className="header-link">About</a>
                 <a href="/articles" className="header-link">Articles/HowTos</a>
                 <a href="#" className="header-link">Login/Register</a>
             </div>
