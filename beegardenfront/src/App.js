@@ -26,7 +26,8 @@ class App extends Component {
       userEmail: '',
       newsArticles: [],
       user: {},
-      loggedIn: false
+      loggedIn: false,
+      auth: ''
     }
   }
 
@@ -34,7 +35,13 @@ class App extends Component {
     console.log("update user")
     this.setState({
       user: user,
-      loggedIn: true
+      loggedIn: true,
+    })
+  }
+
+  updateAuth = (auth) => {
+    this.setState({
+      auth
     })
   }
 
@@ -99,14 +106,14 @@ class App extends Component {
         <Route
           path="/login"
           render={(props) => 
-          <LoginReg updateUser={this.updateUser} {...props}/>
+          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} {...props}/>
           }
         />
         
         {/* Profile Route */}
         <Route
           path="/profile"
-          render={() => <Profile user={this.state.user} />}
+          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} updateUser={this.updateUser} updateAuth={this.updateAuth}/>}
         />
 
         <Footer />

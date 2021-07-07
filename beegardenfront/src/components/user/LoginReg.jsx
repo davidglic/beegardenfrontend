@@ -29,8 +29,10 @@ class LoginReg extends Component {
         //  const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
         //  console.log(logintest)
         const user = await axios.put(`${apiRoute}login/`, {email: evt.target.email.value, password: evt.target.password.value})
+        
         console.log(user.data)
         this.props.updateUser(user.data)
+        this.props.updateAuth(evt.target.password.value)
         this.props.history.push('/profile')
     }
 
@@ -73,6 +75,7 @@ class LoginReg extends Component {
         const newAccount = await axios.post(`${apiRoute}create/`, data)
         console.log(newAccount.data)
         this.props.updateUser(newAccount.data)
+        this.props.updateAuth(evt.target.password.value)
         this.props.history.push('/profile')
 
         // if (isEqual(evt.target.email) 
