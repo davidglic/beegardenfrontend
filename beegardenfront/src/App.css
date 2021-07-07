@@ -1,11 +1,16 @@
 .App {
   text-align: center;
   max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+
 
 .header-container {
   display: flex;
   justify-content: space-between;
+  
 }
 .header-left {
   display: inline-flex;

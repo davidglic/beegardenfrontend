@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Route, Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react';
+import axios from 'axios';
 
 //import components here
 import Header from './components/Header'
@@ -11,7 +12,8 @@ import ArticlesList from './components/articles/ArticlesList';
 import Article from './components/articles/Article';
 import NewsContainer from './components/articles/NewsContainer';
 import About from './components/abouts/About';
-import axios from 'axios';
+import LoginReg from './components/user/LoginReg'
+import Profile from './components/user/Profile'
 // import Footer from './components/Footer'
 
 const apiRoute = "http://localhost:8000/"
@@ -22,8 +24,18 @@ class App extends Component {
     super(props)
     this.state = {
       userEmail: '',
-      newsArticles: []
+      newsArticles: [],
+      user: {},
+      loggedIn: false
     }
+  }
+
+  updateUser = (user) => {
+    console.log("update user")
+    this.setState({
+      user: user,
+      loggedIn: true
+    })
   }
 
  async componentDidMount() {
@@ -64,7 +76,7 @@ class App extends Component {
         <Route
           path='/articles'
           render={() =>
-          <div>
+          <div className="main-comp">
             <ArticlesList />
           </div>
           } />
@@ -72,7 +84,7 @@ class App extends Component {
         {/* About Route */}
           <Route 
             path='/about'
-            render={() => <About />}
+            render={() => <About className="main-comp" />}
           />
 
         {/* Article Route */}
@@ -81,6 +93,20 @@ class App extends Component {
           render={(props) =>
           <Article {...props}/>
           }
+        />
+
+        {/* Login/Register Route */}
+        <Route
+          path="/login"
+          render={(props) => 
+          <LoginReg updateUser={this.updateUser} {...props}/>
+          }
+        />
+        
+        {/* Profile Route */}
+        <Route
+          path="/profile"
+          render={() => <Profile user={this.state.user} />}
         />
 
         <Footer />
