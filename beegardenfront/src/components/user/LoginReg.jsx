@@ -6,6 +6,8 @@ function isEqual(a,b){
     return false
 }
 
+
+
 const apiRoute = "http://localhost:8000/"
 
 class LoginReg extends Component {
@@ -16,6 +18,14 @@ class LoginReg extends Component {
             newsletter: true
         }
     }
+
+    setError = errorText => {
+        this.setState({
+            error: errorText
+        
+        })
+    }
+
     handleChange = evt => {
         console.log('click')
         this.setState({
@@ -25,24 +35,41 @@ class LoginReg extends Component {
 
     handleLogin = async (evt) => {
         evt.preventDefault()
+        this.setError("")
         console.log(evt.target.email.value + " : " + evt.target.password.value)
         //  const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
         //  console.log(logintest)
+        // const user = await axios.put(`${apiRoute}login/`, {email: evt.target.email.value, password: evt.target.password.value})
+          
+        // console.log(user.data)
+        // this.props.updateUser(user.data)
+        // this.props.updateAuth(evt.target.password.value)
+        // this.props.history.push('/profile')
         const user = await axios.put(`${apiRoute}login/`, {email: evt.target.email.value, password: evt.target.password.value})
-        
-        console.log(user.data)
-        this.props.updateUser(user.data)
-        this.props.updateAuth(evt.target.password.value)
-        this.props.history.push('/profile')
+            .then(resp => {
+                console.log(resp.data)
+                this.props.updateUser(resp.data)
+                this.props.updateAuth(evt.target.password.value)
+                this.props.history.push('/profile') 
+            })
+            .catch(err => {
+                if(err.response) {
+                    // client received an error response (5xx, 4xx)
+                    // console.log(err.response.status)
+                    // console.log(err.response.data)
+                    if (err.response.status === 403) {this.setError("Incorrect password entered.")}
+                    if (err.response.status === 401) {this.setError("E-mail address not registered.")}
+                } else {
+                    //anything else
+                    console.log("Everything is broken. Try again later.")
+                }
+            })
     }
 
     handleReg = async (evt) => {
         evt.preventDefault()
         //clear errors
-        this.setState({
-            error: ""
-        
-        })
+        this.setError('')
         console.log(evt.target.email.value)
          // const createTest = await axios.post(`${apiRoute}create/`, newAccount)
            // const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
@@ -85,7 +112,9 @@ class LoginReg extends Component {
         return (
             <div className="loginreg-wrapper">
 
+                <div className="error">{this.state.error}</div>
                 <div className="login-container"></div>
+
                 <h3>Login</h3>
                 <form onSubmit={this.handleLogin}>
                     Email: <input type="email" name="email" required/><br></br>
@@ -95,7 +124,7 @@ class LoginReg extends Component {
 
                 <div className="register-container"></div>
                 <h3>Register A New Garden</h3>
-                <div className="error">{this.state.error}</div>
+                
                 <br />
                 <form onSubmit={this.handleReg}>
                     Email: <input type="email" name="email" required/><br></br>

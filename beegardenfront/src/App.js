@@ -14,6 +14,7 @@ import NewsContainer from './components/articles/NewsContainer';
 import About from './components/abouts/About';
 import LoginReg from './components/user/LoginReg'
 import Profile from './components/user/Profile'
+import Error from './components/Error';
 // import Footer from './components/Footer'
 
 const apiRoute = "http://localhost:8000/"
@@ -114,6 +115,11 @@ class App extends Component {
         <Route
           path="/profile"
           render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} updateUser={this.updateUser} updateAuth={this.updateAuth}/>}
+        />
+        {/* Error */}
+        <Route 
+          path="/error"
+          render={() => <Error />}
         />
 
         <Footer />
