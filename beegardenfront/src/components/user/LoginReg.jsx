@@ -57,11 +57,16 @@ class LoginReg extends Component {
                     // client received an error response (5xx, 4xx)
                     // console.log(err.response.status)
                     // console.log(err.response.data)
-                    if (err.response.status === 403) {this.setError("Incorrect password entered.")}
-                    if (err.response.status === 401) {this.setError("E-mail address not registered.")}
+                    if (err.response.status === 403) {
+                        this.setError("Incorrect password entered.")
+                    } else if (err.response.status === 401) {
+                        this.setError("E-mail address not registered.")
+                    } else {
+                        this.props.history.push('/error')
+                    }
                 } else {
                     //anything else
-                    console.log("Everything is broken. Try again later.")
+                    this.props.history.push('/error')
                 }
             })
     }
