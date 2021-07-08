@@ -3,10 +3,10 @@ function Error() {
     return(
         <div>
             <h3>Server Error - 418: I am a teapot.</h3>
-            <div></div>
+            <div>The server refuses the attempt to brew coffee with a teapot.</div>
 
-            <div>We are experiencing issues. Please try again later.</div>
-            
+            <h4>We are experiencing issues. Please try again later.</h4>
+            <img src="/images/lostbee.png" />
 
 
         </div>
