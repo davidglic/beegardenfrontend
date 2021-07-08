@@ -105,10 +105,33 @@ class LoginReg extends Component {
             return null
         }
         const newAccount = await axios.post(`${apiRoute}create/`, data)
-        console.log(newAccount.data)
-        this.props.updateUser(newAccount.data)
-        this.props.updateAuth(evt.target.password.value)
-        this.props.history.push('/profile')
+            .then((resp) => {
+                console.log(resp.data)
+                this.props.updateUser(resp.data)
+                this.props.updateAuth(evt.target.password.value)
+                this.props.history.push('/profile')
+            })
+            .catch(err => {
+                if(err.response) {
+                    // client received an error response (5xx, 4xx)
+                    // console.log(err.response.status)
+                    // console.log(err.response.data)
+                    if (err.response.status === 400) {
+                        this.setError("Request not accepted. Please check fields.")
+                    } else if (err.response.status === 422){
+                        this.setError("Email has already been registered. Please login, or use a different email if this is for a new garden.")
+                    } else {
+                        this.props.history.push('/error')
+                    }
+                } else {
+                    //anything else
+                    this.props.history.push('/error')
+                }
+            })
+        // console.log(newAccount.data)
+        // this.props.updateUser(newAccount.data)
+        // this.props.updateAuth(evt.target.password.value)
+        // this.props.history.push('/profile')
 
         // if (isEqual(evt.target.email) 
     }
