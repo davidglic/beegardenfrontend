@@ -82,7 +82,11 @@ class Profile extends Component {
         const updatedUser = await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value})
         this.props.updateUser(updatedUser.data)
         alert("Account info updated.")
-    }   
+    }
+    
+    componentDidMount() {
+        if (this.props.loggedIn === false) {this.props.history.push('/login')}
+    }
 
     render() {
         return (

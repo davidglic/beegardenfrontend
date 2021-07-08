@@ -45,6 +45,13 @@ class App extends Component {
       auth
     })
   }
+  handleLogout = () => {
+    this.setState({
+      user: {},
+      loggedIn: false,
+      auth: ''
+    })
+  }
 
  async componentDidMount() {
    const newsItems = await axios.get(`${apiRoute}articles/news`)
@@ -67,7 +74,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header loggedIn={this.state.loggedIn} handleLogout={this.handleLogout} />
         {/* Landing Route */}
         <Route 
           path="/"
@@ -107,14 +114,14 @@ class App extends Component {
         <Route
           path="/login"
           render={(props) => 
-          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} {...props}/>
+          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} loggedIn={this.state.loggedIn} {...props}/>
           }
         />
         
         {/* Profile Route */}
         <Route
           path="/profile"
-          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} updateUser={this.updateUser} updateAuth={this.updateAuth}/>}
+          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} loggedIn={this.state.loggedIn} updateUser={this.updateUser} updateAuth={this.updateAuth}/>}
         />
         {/* Error */}
         <Route 

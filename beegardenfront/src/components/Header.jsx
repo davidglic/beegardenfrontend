@@ -1,12 +1,16 @@
 import React from 'react'
 import headerBee from './images/header-bee.png'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 
 const Header = (props) => {
     const history = useHistory()
 
     const handleClick = () => history.push('/')
+    const handleLogout = () => {
+        props.handleLogout()
+        history.push('/')
+    }
 
     return (
         <div className="header-container">
@@ -15,9 +19,15 @@ const Header = (props) => {
             <img src={headerBee} />
             </div>
             <div className="header-right">
-                <a href="/about" className="header-link">About</a>
-                <a href="/articles" className="header-link">Articles/HowTos</a>
-                <a href="/login" className="header-link">Login/Register</a>
+                <Link to="/about" className="header-link">About</Link>
+                <Link to="/articles" className="header-link">Articles/HowTos</Link>
+                {props.loggedIn ? 
+                <Link to="/profile" className="header-link">Profile</Link>
+                :
+                <Link to="/login" className="header-link">Login/Register</Link>
+                }
+                {props.loggedIn ? <Link onClick={handleLogout}>Log out</Link> : <></>}
+                
             </div>
 
         </div>

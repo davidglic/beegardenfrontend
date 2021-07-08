@@ -135,6 +135,9 @@ class LoginReg extends Component {
 
         // if (isEqual(evt.target.email) 
     }
+    componentDidMount() {
+        if (this.props.loggedIn) {this.props.history.push('/profile')}
+    }
 
     render() {
         return (
