@@ -109,7 +109,7 @@ class LoginReg extends Component {
                 console.log(resp.data)
                 this.props.updateUser(resp.data)
                 this.props.updateAuth(evt.target.password.value)
-                this.props.history.push('/profile')
+                // this.props.history.push('/profile')
             })
             .catch(err => {
                 if(err.response) {
@@ -128,6 +128,10 @@ class LoginReg extends Component {
                     this.props.history.push('/error')
                 }
             })
+            const genToken = await axios.put(`${apiRoute}email/sendver/${this.props.user.id}`)
+                .then(resp => {
+                    this.props.history.push('/profile')
+                })
         // console.log(newAccount.data)
         // this.props.updateUser(newAccount.data)
         // this.props.updateAuth(evt.target.password.value)

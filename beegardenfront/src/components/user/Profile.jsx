@@ -41,8 +41,7 @@ class Profile extends Component {
             //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
             //  console.log(deleteTest)
             await axios.delete(`${apiRoute}update/`, {data: {email: this.props.user.email, token: this.props.user.token}})
-            this.props.updateAuth('')
-            this.props.updateUser({})
+            this.props.handleLogout()
             alert('Account Deleted.')
             this.props.history.push('/')
             return
@@ -86,6 +85,7 @@ class Profile extends Component {
     
     componentDidMount() {
         if (this.props.loggedIn === false) {this.props.history.push('/login')}
+        if (this.props.user.verified === false) {this.props.history.push('/verify')}
     }
 
     render() {

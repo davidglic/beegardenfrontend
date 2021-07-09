@@ -15,6 +15,7 @@ import About from './components/abouts/About';
 import LoginReg from './components/user/LoginReg'
 import Profile from './components/user/Profile'
 import Error from './components/Error';
+import Verify from './components/user/Verify';
 // import Footer from './components/Footer'
 
 const apiRoute = "http://localhost:8000/"
@@ -40,6 +41,14 @@ class App extends Component {
     })
   }
 
+  updateVerified = () => {
+    const user = this.state.user
+    user.verified = true
+    this.setState({
+      user
+    })
+  }
+
   updateAuth = (auth) => {
     this.setState({
       auth
@@ -55,6 +64,8 @@ class App extends Component {
 
  async componentDidMount() {
    const newsItems = await axios.get(`${apiRoute}articles/news`)
+  //  const test = await axios.post(`${apiRoute}email/verify/`, {id: 5, vertoken: 303766})
+  //  console.log(test.data)
    
    this.setState({
      newsArticles: newsItems.data
@@ -114,19 +125,25 @@ class App extends Component {
         <Route
           path="/login"
           render={(props) => 
-          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} loggedIn={this.state.loggedIn} {...props}/>
+          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} loggedIn={this.state.loggedIn} user={this.state.user} {...props}/>
           }
         />
         
         {/* Profile Route */}
         <Route
           path="/profile"
-          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} loggedIn={this.state.loggedIn} updateUser={this.updateUser} updateAuth={this.updateAuth}/>}
+          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} loggedIn={this.state.loggedIn} updateUser={this.updateUser} updateAuth={this.updateAuth} handleLogout={this.handleLogout}/>}
         />
         {/* Error */}
         <Route 
           path="/error"
           render={() => <Error />}
+        />
+
+        {/* Verify */}
+        <Route 
+          path="/verify"
+          render={(props) => <Verify {...props} user={this.state.user} updateVerified={this.updateVerified}/>}
         />
 
         <Footer />
