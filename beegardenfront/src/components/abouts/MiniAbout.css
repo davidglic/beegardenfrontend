@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content:space-evenly;
+    /* background-color: #9dae00; */
 
     
 }
@@ -10,9 +11,14 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 480px;
-    min-width: 480px;
+    width: 49%;
     
+    background-color: #1f721f;
+    margin: 10px 10px 10px 0px;
+    color: white;    
+}
+.bottom {
+    width: auto;
 }
 
 .mini-about-content {
@@ -28,4 +34,13 @@
 
 .mini-about-link{
     text-align: right;
+}
+
+@media only screen and (max-width: 1020px) {
+    div.mini-about-wrapper {
+        width: auto;
+    }
+    .mini-about-container {
+        flex-direction: column;
+    }
 }

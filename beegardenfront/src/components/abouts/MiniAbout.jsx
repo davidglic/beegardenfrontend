@@ -30,7 +30,7 @@ const MiniAbout = (props) => {
                 <a href="#" className="mini-about-link">Learn More{'>'}</a>
             </div>
 
-            <div className="mini-about-wrapper">
+            <div className="mini-about-wrapper bottom">
                 <h3 className="mini-about header">Protecting pollinators from chemical exposure.</h3>
                 
                 <div className="mini-about-content">
