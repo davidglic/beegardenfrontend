@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import './Profile.css'
 
 function isEqual(a,b){
@@ -100,7 +101,7 @@ class Profile extends Component {
                 <div>Zipcode of garden Location: {this.props.user.zipcode}</div>
                 
                 <div className="profile options">
-                    <div className="profile-button">Info Page</div>
+                    <Link to={`/info/${this.props.user.id}`}><div className="profile-button">Garden Info Page/QR Code</div></Link>
                     <div className="profile-button" name="account" onClick={() => this.buttonClick("account")}>Edit Account info</div>
                     <div className="profile-button" onClick={() => this.buttonClick("password")}>Change Password</div>
                     <div className="profile-button" onClick={() => this.buttonClick("delete")}>Delete garden/registration</div>

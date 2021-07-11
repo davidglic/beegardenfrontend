@@ -16,6 +16,7 @@ import LoginReg from './components/user/LoginReg'
 import Profile from './components/user/Profile'
 import Error from './components/Error';
 import Verify from './components/user/Verify';
+import Info from './components/user/Info'
 // import Footer from './components/Footer'
 
 const apiRoute = "http://localhost:8000/"
@@ -144,6 +145,12 @@ class App extends Component {
         <Route 
           path="/verify"
           render={(props) => <Verify {...props} user={this.state.user} updateVerified={this.updateVerified}/>}
+        />
+
+        {/* Garden Info */}
+        <Route 
+          path="/info/:id"
+          render={(props) => <Info {...props} loggedIn={this.state.loggedIn}/> }
         />
 
         <Footer />
