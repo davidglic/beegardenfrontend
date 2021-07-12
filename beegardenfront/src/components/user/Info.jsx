@@ -40,22 +40,23 @@ class Info extends Component {
                 {/* Main Info element. */}
                 <h3>Welcome to Little Bee Gardens</h3>
                     <img src={beeOnClover} className="mini-about-img"/>
-                    <p className="mini-about-text">Little Bee Gardens are a project started to raise awareness about protecting pollinators and building habitat in urban and suburban areas. Pollinators&mdash;like bees, butterflies, and moths&mdash;are struggling in many areas due to habitat loss and unintentional human interference. These pollinators are essentail for the health of our urban landscapes. Here we provide articles and howtos on how we can all protect this vital natural asset in our cities and towns. 
-                     <Link to='/about'>Click here to learn more.</Link></p>
-                    
-                    
                     <div className='stat-wrapper'>
                         <div className="stat">This garden was built on {data.created}.</div>
                         <div className="stat">It provides approximately {data.gardenarea} sq. feet of habitat for local pollinators.</div>
                         <div className="stat">There are {data.gardencount_local} total gardens in this zipcode totaling {data.totalsqft_local} sq. feet in area.</div>
-                        <div className="stat">The average Bee Garden in this area is {data.avgsqft_local} sq. feet.</div>
+                        <div className="stat">The average Bee Garden in this area is {Math.round(data.avgsqft_local)} sq. feet.</div>
 
                         <br />
                         <div>Nationally:</div>
                         <div className="stat">There are {data.gardencount_total} total gardens in the US totalling {data.totalsqft_total} sq. feet in area.</div>
-                        <div className="stat">The average Bee Garden is {data.avgsqft_total} sq. feet.</div>
+                        <div className="stat">The average Bee Garden is {Math.round(data.avgsqft_total)} sq. feet.</div>
 
                     </div>
+                    <p className="mini-about-text">Little Bee Gardens are a project started to raise awareness about protecting pollinators and building habitat in urban and suburban areas. Pollinators&mdash;like bees, butterflies, and moths&mdash;are struggling in many areas due to habitat loss and unintentional human interference. These pollinators are essentail for the health of our urban landscapes. Here we provide articles and howtos on how we can all protect this vital natural asset in our cities and towns. 
+                     <Link to='/'>Click here to learn more.</Link></p>
+                    
+                    
+                    
                 
             </div>
         )
