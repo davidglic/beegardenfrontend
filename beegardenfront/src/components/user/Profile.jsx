@@ -42,9 +42,27 @@ class Profile extends Component {
             //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
             //  console.log(deleteTest)
             await axios.delete(`${apiRoute}update/`, {data: {email: this.props.user.email, token: this.props.user.token}})
-            this.props.handleLogout()
-            alert('Account Deleted.')
-            this.props.history.push('/')
+                .then(resp => {
+                    this.props.handleLogout()
+                alert('Account Deleted.')
+                this.props.history.push('/')
+                })
+                .catch(err => {
+                    if(err.response) {
+                        if (err.response.status === 401) {
+            
+                            this.setState({error: "Invalid auth token."})
+                            this.props.history.push('/login')
+                        } else {
+                            this.props.history.push('/error')
+                        }
+                    } else {
+                        //anything else
+                        this.props.history.push('/error')   
+                    }
+                })
+                
+            
             return
         }
         
@@ -52,8 +70,24 @@ class Profile extends Component {
         //newsletter edgecase 
         if (name === "newsletter") {
             const updatedUser = await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value === "true" ? true : false})
-            this.props.updateUser(updatedUser.data)
-            alert("Account info updated.")
+            .then(resp => {
+                this.props.updateUser(resp.data)
+                alert("Account info updated.")
+            })
+            .catch(err => {
+                if(err.response) {
+                    if (err.response.status === 401) {
+        
+                        this.setState({error: "Invalid auth token."})
+                        this.props.history.push('/login')
+                    } else {
+                        this.props.history.push('/error')
+                    }
+                } else {
+                    //anything else
+                    this.props.history.push('/error')   
+                }
+            })
             return
         }
 
@@ -105,8 +139,29 @@ class Profile extends Component {
         if (evt.target[name].value.length === 0) {return}
         console.log(name)
         const updatedUser = await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value})
-        this.props.updateUser(updatedUser.data)
-        alert("Account info updated.")
+            .then(resp => {
+
+                this.props.updateUser(resp.data)
+                alert("Account info updated.")
+                
+            })
+            .catch(err => {
+                if(err.response) {
+                    if (err.response.status === 401) {
+                        console.log('catch1')
+                        this.setState({error: "Invalid auth token."})
+                        this.props.history.push('/login')
+                    } else {
+                        this.props.history.push('/error')
+                        console.log('catch2')
+                    }
+                } else {
+                    //anything else
+                    console.log('catch3')
+                    this.props.history.push('/error')   
+                }
+            })
+        
     }
     
     componentDidMount() {
