@@ -46,6 +46,7 @@ class Profile extends Component {
                         if (err.response.status === 401) {
                             
                             this.setState({error: "Invalid auth token."})
+                            this.props.handleLogout()
                             this.props.history.push('/login')
                         } else {
                             this.props.history.push('/error')
@@ -71,6 +72,7 @@ class Profile extends Component {
                     // client received an error response (5xx, 4xx)
                     if (err.response.status === 401) {
                         this.setState({error: "Invalid auth token."})
+                        this.props.handleLogout()
                         this.props.history.push('/login')
                     } else {
                         this.props.history.push('/error')
@@ -103,6 +105,9 @@ class Profile extends Component {
                     if (err.response.status === 403) {
         
                         this.setState({error: "Current password is incorrect."})
+                    } else if (err.response.status === 401) {
+                        this.props.handleLogout()
+                        this.props.history.push('/login')
                     } else {
                         this.props.history.push('/error')
                     }
@@ -130,16 +135,15 @@ class Profile extends Component {
             .catch(err => {
                 if(err.response) {
                     if (err.response.status === 401) {
-                        console.log('catch1')
                         this.setState({error: "Invalid auth token."})
+                        this.props.handleLogout()
                         this.props.history.push('/login')
                     } else {
                         this.props.history.push('/error')
-                        console.log('catch2')
+                        
                     }
                 } else {
                     //anything else
-                    console.log('catch3')
                     this.props.history.push('/error')   
                 }
             })
