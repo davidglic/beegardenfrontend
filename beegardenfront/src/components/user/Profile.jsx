@@ -3,10 +3,6 @@ import React, { Component, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 
-function isEqual(a,b){
-    if (a === b) return true
-    return false
-}
 
 const apiRoute = "http://localhost:8000/"
 
@@ -104,7 +100,7 @@ class Profile extends Component {
                 new: evt.target[name].value, 
                 password: evt.target.currentPassword.value})
             .then(resp => {
-                this.props.updateAuth(evt.target[name].value)
+                
                 this.setState({visible: ''})
                 alert("Password updated.")
                 // this.props.history.push('/profile')

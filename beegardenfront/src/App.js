@@ -1,10 +1,10 @@
-import logo from './logo.svg';
+//module imports
 import './App.css';
 import {Route, Link, withRouter} from 'react-router-dom'
 import React, {Component} from 'react';
 import axios from 'axios';
 
-//import components here
+//component imports
 import Header from './components/Header'
 import Footer from './components/Footer';
 import MiniAbout from './components/abouts/MiniAbout';
@@ -17,10 +17,9 @@ import Profile from './components/user/Profile'
 import Error from './components/Error';
 import Verify from './components/user/Verify';
 import Info from './components/user/Info'
-// import Footer from './components/Footer'
+
 
 const apiRoute = "http://localhost:8000/"
-//http://localhost:8000/articles/howto/?format=json
 
 class App extends Component {
   constructor(props){
@@ -35,7 +34,7 @@ class App extends Component {
   }
 
   updateUser = (user) => {
-    console.log("update user")
+    //update user on login, or edit of profile info.
     this.setState({
       user: user,
       loggedIn: true,
@@ -43,6 +42,7 @@ class App extends Component {
   }
 
   updateVerified = () => {
+    //update email verification for user in state.
     const user = this.state.user
     user.verified = true
     this.setState({
@@ -50,11 +50,6 @@ class App extends Component {
     })
   }
 
-  updateAuth = (auth) => {
-    this.setState({
-      auth
-    })
-  }
   handleLogout = () => {
     this.setState({
       user: {},
@@ -64,22 +59,12 @@ class App extends Component {
   }
 
  async componentDidMount() {
-   const newsItems = await axios.get(`${apiRoute}articles/news`)
-  //  const test = await axios.post(`${apiRoute}email/verify/`, {id: 5, vertoken: 303766})
-  //  console.log(test.data)
+  //get and load news articles into state. They will then automatically populate.
+  const newsItems = await axios.get(`${apiRoute}articles/news`)
    
-   this.setState({
+  this.setState({
      newsArticles: newsItems.data
    })
-  //  const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
-  //  console.log(logintest)
-  //  const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
-  //  console.log(updatetest)
-  //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
-  //  console.log(deleteTest)
-  // const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
-  // const createTest = await axios.post(`${apiRoute}create/`, newAccount)
-  //  console.log(createTest.data)
   
   }
 
@@ -126,14 +111,14 @@ class App extends Component {
         <Route
           path="/login"
           render={(props) => 
-          <LoginReg updateUser={this.updateUser} updateAuth={this.updateAuth} loggedIn={this.state.loggedIn} user={this.state.user} {...props}/>
+          <LoginReg updateUser={this.updateUser} loggedIn={this.state.loggedIn} user={this.state.user} {...props}/>
           }
         />
         
         {/* Profile Route */}
         <Route
           path="/profile"
-          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} loggedIn={this.state.loggedIn} updateUser={this.updateUser} updateAuth={this.updateAuth} handleLogout={this.handleLogout}/>}
+          render={(props) => <Profile {...props} user={this.state.user} auth={this.state.auth} loggedIn={this.state.loggedIn} updateUser={this.updateUser} handleLogout={this.handleLogout}/>}
         />
         {/* Error */}
         <Route 
@@ -164,12 +149,3 @@ class App extends Component {
 export default withRouter(App);
 
 
-// <Route
-//           path="/"
-//           exact render={() => 
-//           <div> 
-//           <Landing searchDrinks={this.searchDrinks}/>
-//           <DrinkStream drinkList={this.state.drinkList}/> 
-//           </div> 
-//         }
-//         />

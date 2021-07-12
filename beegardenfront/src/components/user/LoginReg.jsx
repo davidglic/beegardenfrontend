@@ -49,7 +49,7 @@ class LoginReg extends Component {
             .then(resp => {
                 console.log(resp.data)
                 this.props.updateUser(resp.data)
-                this.props.updateAuth(evt.target.password.value)
+                
                 this.props.history.push('/profile') 
             })
             .catch(err => {
@@ -108,7 +108,7 @@ class LoginReg extends Component {
             .then((resp) => {
                 console.log(resp.data)
                 this.props.updateUser(resp.data)
-                this.props.updateAuth(evt.target.password.value)
+                
                 // this.props.history.push('/profile')
             })
             .catch(err => {
