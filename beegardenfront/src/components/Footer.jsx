@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = (props) => {
     return (
-        <div>
-            <h4>Copyright 2021</h4>
+        <div className="footer-wrapper">
+            <h4 className="footer-text">Copyright 2021 David Lewis</h4>
         
         </div>
     )

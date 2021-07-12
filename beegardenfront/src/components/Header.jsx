@@ -6,7 +6,9 @@ import { useHistory, Link } from 'react-router-dom';
 const Header = (props) => {
     const history = useHistory()
 
+    //handle click for Logo
     const handleClick = () => history.push('/')
+
     const handleLogout = () => {
         props.handleLogout()
         history.push('/')
