@@ -9,28 +9,34 @@ const Verify = (props) => {
 
     const [error, setError] = useState('')
     const history = useHistory()
-// http://localhost:8000/email/sendver/5
+
     const handleClick = async () => {
-        
+        //handle resend email request.
         axios.put(`${apiRoute}email/sendver/${props.user.id}`)
         alert("Email Sent.")
     }
+
    const handleSubmit = async (event) => {
+       //handle token submit/verify
+
         event.preventDefault()
+        
+        //user id and entered token
         const data = {
             id: props.user.id,
             vertoken: Number(event.target.vertoken.value)
         }
+
+        //verify token/userid with backend
         await axios.post(`${apiRoute}email/verify/`, data)
             .then(resp => {
+                //on success
                 props.updateVerified()
                 history.push('/profile')
             })
             .catch(err => {
                 if(err.response) {
                     // client received an error response (5xx, 4xx)
-                    // console.log(err.response.status)
-                    // console.log(err.response.data)
                     if (err.response.status === 401) {
                         setError("Incorrect verification token entered.")
                     } else {

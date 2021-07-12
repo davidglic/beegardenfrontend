@@ -8,11 +8,13 @@ import './articles.css'
 
 const apiRoute = "http://localhost:8000/"
 
+//error Title and HTML for instances where article is not found by ID.
 const errorArticle = {
     title: 'Article not found...',
     content: '<p>We are sorry, but we cant find this article. Please click <a href="../articles">here</a> to view our current articles and howtos. </p><br /> <img src="/images/lostbee.png" />'
 }
 
+//main react component
 class Article extends Component {
     constructor(props) {
         super(props)
@@ -22,9 +24,10 @@ class Article extends Component {
     }
 
     async componentDidMount() {
+        //fet and load article
         const article = await axios.get(`${apiRoute}articles/get/${this.props.match.params.id}`)
             .then(resp => {
-                console.log(resp.data)
+                
                 this.setState({
                     article: resp.data
                 })  
@@ -38,10 +41,6 @@ class Article extends Component {
                     } else {this.props.history.push('/error')}
                 } else {this.props.history.push('/error')}
             })
-        // console.log(article.data)
-        // this.setState({
-        //     article: article.data
-        // })
     }
 
     render() {
@@ -50,6 +49,7 @@ class Article extends Component {
             <div>
                 <h3>{article.title}</h3>
                 <div>
+                    {/* Sanitize html then parse into react elements. */}
                     {ReactHtmlParser(DOMPurify.sanitize(article.content))}
                 </div>
 

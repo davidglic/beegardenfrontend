@@ -1,12 +1,9 @@
 import axios from 'axios'
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 
-
 const apiRoute = "http://localhost:8000/"
-
-
 
 class Profile extends Component {
     constructor(props) {
@@ -18,14 +15,14 @@ class Profile extends Component {
         }
     }
     buttonClick = (name) => {
-        console.log(name)
+        //Profile page button, toggles view below.
         this.setState({
             visible: name
         })
     }
 
     handleChange = evt => {
-        console.log('click')
+        //newsletter checkbox state handler.
         this.setState({
             newsletter: !this.state.newsletter
         })
@@ -35,18 +32,19 @@ class Profile extends Component {
         evt.preventDefault()
         //delete edgecase
         if (name === "delete") {
-            //  const deleteTest = await axios.delete(`${apiRoute}update/`, {data: {email: 'this@this.com', password: "bee"}})
-            //  console.log(deleteTest)
+
             await axios.delete(`${apiRoute}update/`, {data: {email: this.props.user.email, token: this.props.user.token}})
                 .then(resp => {
+                    //on success from server.
                     this.props.handleLogout()
-                alert('Account Deleted.')
-                this.props.history.push('/')
+                    alert('Account Deleted.')
+                    this.props.history.push('/')
                 })
                 .catch(err => {
                     if(err.response) {
+                        // client received an error response (5xx, 4xx)
                         if (err.response.status === 401) {
-            
+                            
                             this.setState({error: "Invalid auth token."})
                             this.props.history.push('/login')
                         } else {
@@ -56,24 +54,22 @@ class Profile extends Component {
                         //anything else
                         this.props.history.push('/error')   
                     }
-                })
-                
-            
+                }) 
             return
         }
         
-
         //newsletter edgecase 
         if (name === "newsletter") {
             const updatedUser = await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value === "true" ? true : false})
             .then(resp => {
+                //on success from server
                 this.props.updateUser(resp.data)
                 alert("Account info updated.")
             })
             .catch(err => {
                 if(err.response) {
+                    // client received an error response (5xx, 4xx)
                     if (err.response.status === 401) {
-        
                         this.setState({error: "Invalid auth token."})
                         this.props.history.push('/login')
                     } else {
@@ -90,9 +86,6 @@ class Profile extends Component {
         //password edgcase
         if (name === "password") {
             this.setState({error: ""})
-            // console.log(evt.target.currentPassword.value+this.props.auth+evt.target.password.value+evt.target.confirmPassword.value)
-            // if (!isEqual(evt.target.currentPassword.value, this.props.auth)) { this.setState({error: "Current password does not match."}); return }
-            // if (!isEqual(evt.target.password.value, evt.target.confirmPassword.value)) { this.setState({error: "New passwords mismatch."}); return }
             
             await axios.post(`${apiRoute}update/`, {email: this.props.user.email, 
                 token: this.props.user.token, 
@@ -100,17 +93,13 @@ class Profile extends Component {
                 new: evt.target[name].value, 
                 password: evt.target.currentPassword.value})
             .then(resp => {
-                
+                //on success
                 this.setState({visible: ''})
                 alert("Password updated.")
-                // this.props.history.push('/profile')
-                
             })
             .catch(err => {
                 if(err.response) {
                     // client received an error response (5xx, 4xx)
-                    // console.log(err.response.status)
-                    // console.log(err.response.data)
                     if (err.response.status === 403) {
         
                         this.setState({error: "Current password is incorrect."})
@@ -125,12 +114,9 @@ class Profile extends Component {
             })
             return
         }
-        
-          //  const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
-        //  console.log(updatetest)
 
         //all other cases
-
+        //email, area, zipcode
         
         if (evt.target[name].value.length === 0) {return}
         console.log(name)
@@ -157,10 +143,11 @@ class Profile extends Component {
                     this.props.history.push('/error')   
                 }
             })
-        
     }
     
     componentDidMount() {
+        //check if user is logged in, then check if email has been verified. 
+        //push to login or verify screen if appropriate.
         if (this.props.loggedIn === false) {this.props.history.push('/login')}
         if (this.props.user.verified === false) {this.props.history.push('/verify')}
     }

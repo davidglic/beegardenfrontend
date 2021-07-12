@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Article from './Article'
-import NewsArticle from './NewsArticle'
 import axios from 'axios'
 
 
@@ -18,11 +16,11 @@ class ArticlesList extends Component {
     
 
     async componentDidMount() {
-        console.log("mounted")
+        //fetch articles and howtows from api
         const articlesList = await axios.get(`${apiRoute}articles/article`)
         const howtos = await axios.get(`${apiRoute}articles/howto`)
-        console.log(articlesList.data)
-        console.log(howtos.data)
+
+        //update state to display
         this.setState({
             howtos: howtos.data,
             articles: articlesList.data

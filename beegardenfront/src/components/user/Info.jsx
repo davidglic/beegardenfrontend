@@ -13,20 +13,21 @@ class Info extends Component {
             gardendata: {}
         }
     }
-    gardendata = {}
+    // gardendata = {}
     async componentDidMount() {
-        //get garden info
+        //get garden info and update state
         const data = await axios.get(`${apiRoute}garden/${this.props.match.params.id}`)
         this.setState({
             gardendata: data.data
         })
-        //if logged in: get qr code.
+        //if logged in: get qr code. See component below.
     }
 
     render() {
         const data = this.state.gardendata
         return (
             <div className="info-wrapper">
+                {/* Display QR if logged in */}
                 {this.props.loggedIn ? 
                 <div className="loggedin-wrapper">
                     <h3>QR code:</h3>
@@ -36,9 +37,13 @@ class Info extends Component {
                 </div>
                 : <></>}
 
+                {/* Main Info element. */}
                 <h3>Welcome to Little Bee Gardens</h3>
                     <img src={beeOnClover} className="mini-about-img"/>
-                    <p className="mini-about-text">Little Bee Gardens are a project started to raise awareness about protecting pollinators and building habitat in urban and suburban areas. Pollinators&mdash;like bees, butterflies, and moths&mdash;are struggling in many areas due to habitat loss and unintentional human interference. These pollinators are essentail for the health of our urban landscapes. Here we provide articles and howtos on how we can all protect this vital natural asset in our cities and towns.</p>
+                    <p className="mini-about-text">Little Bee Gardens are a project started to raise awareness about protecting pollinators and building habitat in urban and suburban areas. Pollinators&mdash;like bees, butterflies, and moths&mdash;are struggling in many areas due to habitat loss and unintentional human interference. These pollinators are essentail for the health of our urban landscapes. Here we provide articles and howtos on how we can all protect this vital natural asset in our cities and towns. 
+                     <Link to='/about'>Click here to learn more.</Link></p>
+                    
+                    
                     <div className='stat-wrapper'>
                         <div className="stat">This garden was built on {data.created}.</div>
                         <div className="stat">It provides approximately {data.gardenarea} sq. feet of habitat for local pollinators.</div>

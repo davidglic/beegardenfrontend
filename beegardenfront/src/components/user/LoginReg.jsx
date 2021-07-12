@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+
 // helper functions
 function isEqual(a,b){
     if (a === b) return true
     return false
 }
 
-
-
 const apiRoute = "http://localhost:8000/"
 
+//Main component
 class LoginReg extends Component {
     constructor(props) {
         super(props)
@@ -20,6 +20,8 @@ class LoginReg extends Component {
     }
 
     setError = errorText => {
+        //Converts STR to error text that displays on screen.
+        //see .catch responses on axios calls to view individual erros
         this.setState({
             error: errorText
         
@@ -27,6 +29,7 @@ class LoginReg extends Component {
     }
 
     handleChange = evt => {
+        //newsletter checkbox component updates in state.
         console.log('click')
         this.setState({
             newsletter: !this.state.newsletter
@@ -35,28 +38,19 @@ class LoginReg extends Component {
 
     handleLogin = async (evt) => {
         evt.preventDefault()
+
+        //clear errors
         this.setError("")
-        console.log(evt.target.email.value + " : " + evt.target.password.value)
-        //  const logintest = await axios.put(`${apiRoute}login/`, {email: 'test@test.com', password: "bee"})
-        //  console.log(logintest)
-        // const user = await axios.put(`${apiRoute}login/`, {email: evt.target.email.value, password: evt.target.password.value})
-          
-        // console.log(user.data)
-        // this.props.updateUser(user.data)
-        // this.props.updateAuth(evt.target.password.value)
-        // this.props.history.push('/profile')
+        
         const user = await axios.put(`${apiRoute}login/`, {email: evt.target.email.value, password: evt.target.password.value})
             .then(resp => {
-                console.log(resp.data)
+                //on 200 success
                 this.props.updateUser(resp.data)
-                
                 this.props.history.push('/profile') 
             })
             .catch(err => {
                 if(err.response) {
                     // client received an error response (5xx, 4xx)
-                    // console.log(err.response.status)
-                    // console.log(err.response.data)
                     if (err.response.status === 403) {
                         this.setError("Incorrect password entered.")
                     } else if (err.response.status === 401) {
@@ -73,12 +67,11 @@ class LoginReg extends Component {
 
     handleReg = async (evt) => {
         evt.preventDefault()
+
         //clear errors
         this.setError('')
-        console.log(evt.target.email.value)
-         // const createTest = await axios.post(`${apiRoute}create/`, newAccount)
-           // const newAccount = {email: 'new@new.comb', zipcode: 99205, gardenarea: 15, newsletter: true, password: 'bee'}
-  //  console.log(createTest.data)
+        
+        //user model
         const data = {
             email: evt.target.email.value, 
             zipcode: evt.target.zipcode.value, 
@@ -86,8 +79,7 @@ class LoginReg extends Component {
             newsletter: evt.target.newsletter.value === "true" ? true : false, 
             password: evt.target.password.value
         }
-        console.log(!isEqual(data.email, evt.target.confirmEmail.value))
-        console.log(!isEqual(data.password, evt.target.confirmPassword.value))
+
         //check email match
         if (!isEqual(data.email, evt.target.confirmEmail.value)) {
             this.setState({
@@ -96,6 +88,7 @@ class LoginReg extends Component {
             })
             return null
         }
+
         //check password match
         if (!isEqual(data.password, evt.target.confirmPassword.value)) {
             this.setState({
@@ -104,18 +97,16 @@ class LoginReg extends Component {
             })
             return null
         }
+        
+        //if email/password test pass send user model to backend.
         const newAccount = await axios.post(`${apiRoute}create/`, data)
             .then((resp) => {
-                console.log(resp.data)
+                //on success update state with user data from server
                 this.props.updateUser(resp.data)
-                
-                // this.props.history.push('/profile')
             })
             .catch(err => {
                 if(err.response) {
                     // client received an error response (5xx, 4xx)
-                    // console.log(err.response.status)
-                    // console.log(err.response.data)
                     if (err.response.status === 400) {
                         this.setError("Request not accepted. Please check fields.")
                     } else if (err.response.status === 422){
@@ -132,14 +123,10 @@ class LoginReg extends Component {
                 .then(resp => {
                     this.props.history.push('/profile')
                 })
-        // console.log(newAccount.data)
-        // this.props.updateUser(newAccount.data)
-        // this.props.updateAuth(evt.target.password.value)
-        // this.props.history.push('/profile')
-
-        // if (isEqual(evt.target.email) 
     }
+
     componentDidMount() {
+        //check to see if user is already logged in. Push to profile if true.
         if (this.props.loggedIn) {this.props.history.push('/profile')}
     }
 
