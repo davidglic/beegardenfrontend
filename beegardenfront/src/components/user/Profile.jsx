@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Profile.css'
 
@@ -60,15 +60,33 @@ class Profile extends Component {
         //password edgcase
         if (name === "password") {
             this.setState({error: ""})
-            console.log(evt.target.currentPassword.value+this.props.auth+evt.target.password.value+evt.target.confirmPassword.value)
-            if (!isEqual(evt.target.currentPassword.value, this.props.auth)) { this.setState({error: "Current password does not match."}); return }
-            if (!isEqual(evt.target.password.value, evt.target.confirmPassword.value)) { this.setState({error: "New passwords mismatch."}); return }
+            // console.log(evt.target.currentPassword.value+this.props.auth+evt.target.password.value+evt.target.confirmPassword.value)
+            // if (!isEqual(evt.target.currentPassword.value, this.props.auth)) { this.setState({error: "Current password does not match."}); return }
+            // if (!isEqual(evt.target.password.value, evt.target.confirmPassword.value)) { this.setState({error: "New passwords mismatch."}); return }
 
-            await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value})
-            this.props.updateAuth(evt.target[name].value)
-            this.setState({visible: ''})
-            alert("Password updated.")
-            return
+            await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value, password: evt.target.currentPassword.value})
+            .then(resp => {
+                this.props.updateAuth(evt.target[name].value)
+                this.setState({visible: ''})
+                alert("Password updated.")
+                return
+            })
+            .catch(err => {
+                if(err.response) {
+                    // client received an error response (5xx, 4xx)
+                    // console.log(err.response.status)
+                    // console.log(err.response.data)
+                    if (err.response.status === 403) {
+                        this.setError("Current password is incorrect.")
+                    } else {
+                        this.props.history.push('/error')
+                    }
+                } else {
+                    //anything else
+                    this.props.history.push('/error')
+                }
+            })
+            
         }
         
           //  const updatetest = await axios.post(`${apiRoute}update/`, {email: 'test@test.com', password: "bee", object: 'gardenarea', new:12})
