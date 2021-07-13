@@ -9,3 +9,14 @@
 img {
     max-width: 480px;
 }
+
+@media only screen and (max-width: 725px) {
+
+    .news-wrapper {
+      width: 85vw;
+    }
+    img {
+        max-width: 85vw;
+    }
+  
+  }
