@@ -30,7 +30,6 @@ class LoginReg extends Component {
 
     handleChange = evt => {
         //newsletter checkbox component updates in state.
-        console.log('click')
         this.setState({
             newsletter: !this.state.newsletter
         })

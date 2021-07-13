@@ -13,7 +13,7 @@ class NewsContainer extends Component {
                 <h2 className="sub-header">Announcements</h2>
                 <div className="news-stream">
                 {this.props.newsArticles.map(article => {
-                    console.log(article)
+                    
                     return (<NewsArticle article={article}/>)})}
                 </div>
             </div>

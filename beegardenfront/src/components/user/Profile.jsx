@@ -124,7 +124,6 @@ class Profile extends Component {
         //email, area, zipcode
         
         if (evt.target[name].value.length === 0) {return}
-        console.log(name)
         const updatedUser = await axios.post(`${apiRoute}update/`, {email: this.props.user.email, token: this.props.user.token, object: name, new: evt.target[name].value})
             .then(resp => {
 
