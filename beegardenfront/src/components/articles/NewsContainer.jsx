@@ -11,6 +11,7 @@ class NewsContainer extends Component {
         return (
             <div className="news-stream-wrapper">
                 <h2 className="sub-header">Announcements</h2>
+                <hr></hr>
                 <div className="news-stream">
                 {this.props.newsArticles.map(article => {
                     

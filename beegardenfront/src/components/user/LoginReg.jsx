@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './LoginReg.css'
 
 // helper functions
 function isEqual(a,b){
@@ -134,19 +135,20 @@ class LoginReg extends Component {
             <div className="loginreg-wrapper">
 
                 <div className="error">{this.state.error}</div>
-                <div className="login-container"></div>
+                <div className="login-container">
 
-                <h3>Login</h3>
+                <h3 className="title">Login</h3>
                 <form onSubmit={this.handleLogin}>
                     Email: <input type="email" name="email" required/><br></br>
                     Password: <input type="password" name="password" required /><br></br>
                     <input type="submit" value="Log In"/>
                 </form>
+                </div>
 
-                <div className="register-container"></div>
-                <h3>Register A New Garden</h3>
+                <div className="register-container">
+                <h3 className="title">Register A New Garden</h3>
                 
-                <br />
+                
                 <form onSubmit={this.handleReg}>
                     Email: <input type="email" name="email" required/><br></br>
                     Confirm Email: <input type="email" name="confirmEmail" required/><br></br>
@@ -157,7 +159,7 @@ class LoginReg extends Component {
                     Receive Newsletter: <input type="checkbox" name="newsletter" value={this.state.newsletter} checked={this.state.newsletter} onChange={this.handleChange}/>
                     <br></br><input type="submit" value="Register"/>
                 </form>
-
+                </div>
             </div>
         )
             

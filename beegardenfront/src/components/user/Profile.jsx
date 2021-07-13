@@ -88,7 +88,10 @@ class Profile extends Component {
         //password edgcase
         if (name === "password") {
             this.setState({error: ""})
-            
+            if (evt.target.confirmPassword.value != evt.target.password.value) {
+                this.setState({error: "New password and confirm password do not match."})
+                return
+            }
             await axios.post(`${apiRoute}update/`, {email: this.props.user.email, 
                 token: this.props.user.token, 
                 object: name, 
@@ -159,15 +162,14 @@ class Profile extends Component {
         return (
             <div className="profile-wrapper">
                 <h3>Profile</h3>
-                <br />
-                <br />
-                <div>Registered Email: {this.props.user.email}</div>
-                <div>Newsletter: {this.props.user.newsletter ? "Enrolled in newsletter." : "Not enrolled in newsletter."}</div>
-                <div>Garden Area: {this.props.user.gardenarea}</div>
-                <div>Zipcode of garden Location: {this.props.user.zipcode}</div>
+
+                <div><b>Registered Email: </b>{this.props.user.email}</div>
+                <div><b>Newsletter: </b>{this.props.user.newsletter ? "Enrolled in newsletter." : "Not enrolled in newsletter."}</div>
+                <div><b>Garden Area: </b>{this.props.user.gardenarea}</div>
+                <div><b>Zipcode of garden Location: </b>{this.props.user.zipcode}</div>
                 
                 <div className="profile options">
-                    <Link to={`/info/${this.props.user.id}`}><div className="profile-button">Garden Info Page/QR Code</div></Link>
+                    <Link className="profile-button profile-link" to={`/info/${this.props.user.id}`}><div className="profile-button">Garden Info Page/QR Code</div></Link>
                     <div className="profile-button" name="account" onClick={() => this.buttonClick("account")}>Edit Account info</div>
                     <div className="profile-button" onClick={() => this.buttonClick("password")}>Change Password</div>
                     <div className="profile-button" onClick={() => this.buttonClick("delete")}>Delete garden/registration</div>
@@ -175,7 +177,7 @@ class Profile extends Component {
                 </div>
             {this.state.visible === "account" ? 
                 <div>
-                    <h3>Edit Account Info</h3>
+                    <h3 className='title'>Edit Account Info</h3>
                     <form onSubmit={(evt) => this.handleSubmit(evt, "email")}>
                     Email:<input type="email" name="email" placeholder={this.props.user.email} />
                     <input type="submit" value="update"/>  
@@ -196,7 +198,7 @@ class Profile extends Component {
 
                 {this.state.visible === "password" ? 
                 <div>
-                    <h3>Edit Account Info</h3>
+                    <h3 className='title'>Edit Account Info</h3>
                     <form onSubmit={(evt) => this.handleSubmit(evt, "password")}>
                         <br />
                         <div className="error">{this.state.error}</div>
@@ -212,7 +214,7 @@ class Profile extends Component {
 
                 {this.state.visible === "delete" ? 
                 <div>
-                    <h3>Edit Account Info</h3>
+                    <h3 className='title'>Edit Account Info</h3>
                     <form onSubmit={(evt) => this.handleSubmit(evt, "delete")}>
                         <div>Are you sure you wish to delete your profile? This cannot be undone.</div> <br />
                         <input type="submit" value="Confirm Delete"/>  

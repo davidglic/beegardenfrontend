@@ -34,15 +34,15 @@ class ArticlesList extends Component {
             <div className="main-wrapper">
                 
                 <div className="article-list">
-                    <h2>Articles</h2>
+                    <h2 className='title'>Articles</h2>
                     {this.state.articles.map(article => {
                         return (
                             <div className="article-wrapper">
                                 
                                 <img className="thumbnail" src={article.thumbnail}/>
                                 <div>
-                                    <Link to={`/article/${article.id}`}>{article.title}</Link>
-                                    <div>{article.description}</div>
+                                    <Link className='article-list-title' to={`/article/${article.id}`}>{article.title}</Link>
+                                    <div className='article-desc'>{article.description}</div>
                                 </div>
                                 
                             </div>
@@ -51,18 +51,20 @@ class ArticlesList extends Component {
                 </div>
                 
                 <div className="howto-list">
-                    <h2>How Tos</h2>
+                    <h2 className='title'>How To</h2>
                     {this.state.howtos.map(article => {
                         return (
+                            
                             <div className="article-wrapper">
                                 
                                 <img className="thumbnail" src={article.thumbnail}/>
                                 <div>
-                                    <Link to={`/article/${article.id}`}>{article.title}</Link>
-                                    <div>{article.description}</div>
+                                    <Link className='article-list-title' to={`/article/${article.id}`}>{article.title}</Link>
+                                    <div className='article-desc'>{article.description}</div>
                                 </div>
                                 
                             </div>
+                            
                         )
                     })}
                 <div>

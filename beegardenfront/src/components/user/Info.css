@@ -1,0 +1,39 @@
+.loggedin-wrapper {
+    width: fit-content;
+    background-color: #1f721f;
+    margin: 10px 10px 10px 10px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;  
+    padding-bottom: 10px;
+    box-shadow: 5px 5px 10px grey;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.info-wrapper .title {
+    text-align: center;
+}
+.info-wrapper {
+    text-align: left;
+}
+.info-wrapper p {
+    margin-left: 10px;
+}
+.info-wrapper img {
+    margin-left: 10px;
+}
+.info-bee {
+    float: left;
+    border-radius: 10px;
+    width: 210px;
+    margin-right: 10px;
+}
+.info-bee2 {
+    float: right;
+    border-radius: 10px;
+    width: 210px;
+    margin-right: 10px;
+}

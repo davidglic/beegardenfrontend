@@ -8,7 +8,7 @@ const NewsArticle = (props) => {
     return (
         <div className="news-wrapper">
             
-            <h3>{article.title}</h3>
+            <h3 className='title'>{article.title}</h3>
             {ReactHtmlParser(cleanContent)}
             
         </div>

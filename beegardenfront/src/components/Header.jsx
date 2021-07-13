@@ -21,14 +21,14 @@ const Header = (props) => {
             <img src={headerBee} />
             </div>
             <div className="header-right">
-                <Link to="/about" className="header-link">About</Link>
-                <Link to="/articles" className="header-link">Articles/HowTos</Link>
+                <Link className="header-link" to="/about" className="header-link">About</Link>
+                <Link className="header-link" to="/articles" className="header-link">Articles/HowTos</Link>
                 {props.loggedIn ? 
-                <Link to="/profile" className="header-link">Profile</Link>
+                <Link className="header-link" to="/profile" className="header-link">Profile</Link>
                 :
-                <Link to="/login" className="header-link">Login/Register</Link>
+                <Link className="header-link" to="/login" className="header-link">Login/Register</Link>
                 }
-                {props.loggedIn ? <Link onClick={handleLogout}>Log out</Link> : <></>}
+                {props.loggedIn ? <Link className="header-link" onClick={handleLogout}>Logout</Link> : <></>}
                 
             </div>
 

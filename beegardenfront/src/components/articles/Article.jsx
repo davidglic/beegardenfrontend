@@ -47,8 +47,8 @@ class Article extends Component {
         const article = this.state.article
         return (
             <div>
-                <h3>{article.title}</h3>
-                <div>
+                <h2 className='title full-article-title'>{article.title}</h2>
+                <div className="full-article">
                     {/* Sanitize html then parse into react elements. */}
                     {ReactHtmlParser(DOMPurify.sanitize(article.content))}
                 </div>

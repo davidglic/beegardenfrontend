@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
+import './Verify.css'
 
 const apiRoute = "http://localhost:8000/"
 
@@ -54,9 +55,9 @@ const Verify = (props) => {
         <div className="verify-wrapper">
             <h3>Please enter the verification token we sent to your email.</h3>
             <form onSubmit={handleSubmit}>
-                <h5>Verification Code:</h5>
+                <h5 className="title">Verification Code:</h5>
                 <div className="error">{error}</div>
-                <input type='number' max='999999' name='vertoken'/> <br />
+                <input  className="ver-textbox" type='number' max='999999' name='vertoken'/> <br />
                 <input type='submit' value="Submit" />
             </form>
             <div>If you haven't received an email, please click <button onClick={handleClick}>here</button> to resend.</div>

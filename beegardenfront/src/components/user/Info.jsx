@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import beeOnClover from '../images/beeonclover.jpg'
 
+import './Info.css'
+
 const apiRoute = "http://localhost:8000/"
 
 class Info extends Component {
@@ -38,8 +40,8 @@ class Info extends Component {
                 : <></>}
 
                 {/* Main Info element. */}
-                <h3>Welcome to Little Bee Gardens</h3>
-                    <img src={beeOnClover} className="mini-about-img"/>
+                <h2 className='title'>Welcome to Little Bee Gardens</h2>
+                    <img src='/images/lavender-bee.jpg' className="info-bee"/>
                     <div className='stat-wrapper'>
                         <div className="stat">This garden was built on {data.created}.</div>
                         <div className="stat">It provides approximately {data.gardenarea} sq. feet of habitat for local pollinators.</div>
@@ -47,13 +49,16 @@ class Info extends Component {
                         <div className="stat">The average Bee Garden in this area is {Math.round(data.avgsqft_local)} sq. feet.</div>
 
                         <br />
-                        <div>Nationally:</div>
+                        
                         <div className="stat">There are {data.gardencount_total} total gardens in the US totalling {data.totalsqft_total} sq. feet in area.</div>
                         <div className="stat">The average Bee Garden is {Math.round(data.avgsqft_total)} sq. feet.</div>
 
                     </div>
+                    <br />
+                    <hr />
+                    <img src='/images/bee-cherry.jpg' className="info-bee2"/>
                     <p className="mini-about-text">Little Bee Gardens are a project started to raise awareness about protecting pollinators and building habitat in urban and suburban areas. Pollinators&mdash;like bees, butterflies, and moths&mdash;are struggling in many areas due to habitat loss and unintentional human interference. These pollinators are essentail for the health of our urban landscapes. Here we provide articles and howtos on how we can all protect this vital natural asset in our cities and towns. 
-                     <Link to='/'>Click here to learn more.</Link></p>
+                     <br /><Link to='/'>Click here to learn more.</Link></p>
                     
                     
                     

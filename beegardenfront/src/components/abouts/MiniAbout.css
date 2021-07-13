@@ -11,18 +11,32 @@
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 49%;
-    
+    width: 46%;
     background-color: #1f721f;
-    margin: 10px 10px 10px 0px;
-    color: white;    
+    margin: 10px 10px 10px 10px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;  
+    padding-bottom: 10px;
+    box-shadow: 5px 5px 10px grey;
+    
+    
 }
 .bottom {
     width: auto;
 }
+.mini-about-text {
+    margin: 0;
+}
+.mini-about-right {
+    display: flex;
+    flex-direction: column;
+}
 
 .mini-about-content {
-    display: flex;
+    display: inline-block;
+    /* height: fit-content; */
     
 
 }
@@ -30,10 +44,13 @@
     height: 220px;
     width: 220px;
     border-radius: 50%;
+    float: left;
+    margin-right: 10px;
 }
 
 .mini-about-link{
-    text-align: right;
+    align-self: right;
+    color: #fea601;
 }
 
 @media only screen and (max-width: 1020px) {
@@ -42,5 +59,16 @@
     }
     .mini-about-container {
         flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .mini-about-img {
+        float: none;
+        display: none;
+        
+    }
+    .mini-about-content {
+        text-align: center;
     }
 }

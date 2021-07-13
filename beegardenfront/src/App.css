@@ -5,15 +5,35 @@
   margin-right: auto;
   background-color: #e8eced;
   box-shadow: 5px 5px 10px grey;
+  
+  font-family: 'IBM Plex Serif', serif;
+  
+  
+  
+}
+a {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2e4720
+}
+a:hover {
+  color: #fbbf20;
+}
+.header-link:hover {
+  color: white;
 }
 
-
+.title {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
 
 .header-container {
   display: flex;
   justify-content: space-between;
   background-color: #fbbf20;
   /* color: #2e4720 */
+  
 
   
 }
@@ -22,6 +42,7 @@
   align-items: center;
   cursor: pointer;
   padding-left: 10px;
+  
 }
 
 .header-left img {
@@ -31,8 +52,30 @@
 .header-right {
   display: inline-flex;
   align-items: center;
+  margin-right: 10px;
 }
+
+
 
 .header-link {
   padding: 10px;
+}
+
+.footer-wrapper {
+  
+  /* background-color: #fbbf20; */
+  text-align: left;
+
+}
+
+@media only screen and (max-width: 725px) {
+  .header-right{
+    flex-direction: column;
+    padding-bottom: 10px;
+    align-items: flex-end;
+  }
+}
+
+.error {
+  color: red;
 }
