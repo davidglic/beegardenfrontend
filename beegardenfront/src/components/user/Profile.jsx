@@ -88,7 +88,7 @@ class Profile extends Component {
         //password edgcase
         if (name === "password") {
             this.setState({error: ""})
-            if (evt.target.confirmPassword.value != evt.target.password.value) {
+            if (evt.target.confirmPassword.value !== evt.target.password.value) {
                 this.setState({error: "New password and confirm password do not match."})
                 return
             }

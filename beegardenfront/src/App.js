@@ -18,7 +18,6 @@ import Error from './components/Error';
 import Verify from './components/user/Verify';
 import Info from './components/user/Info'
 
-
 const apiRoute = "http://localhost:8000/"
 
 class App extends Component {
