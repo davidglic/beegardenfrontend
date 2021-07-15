@@ -21,10 +21,13 @@ Little Bee Gardens offers--in conjuction with the <a href="https://github.com/da
 
 #### HTML-Parser Example
 The HTML Parser takes strings stored in the database and turns it into react components for rendering.
+<br/>
 For example:
+<br/>
 <img src="https://i.imgur.com/aMicdY0.png"/>
-
+<br/>
 Renders into:
+<br/>
 <img src="https://i.imgur.com/DnTnRdn.png"/>
 
 ## Views
