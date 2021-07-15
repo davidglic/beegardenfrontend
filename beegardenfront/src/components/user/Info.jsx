@@ -6,7 +6,7 @@ import beeOnClover from '../images/beeonclover.jpg'
 
 import './Info.css'
 
-const apiRoute = "http://localhost:8000/"
+const apiRoute = "https://littlebeegardenbackend.herokuapp.com/"
 
 class Info extends Component {
     constructor(props) {
