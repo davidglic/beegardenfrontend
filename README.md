@@ -26,10 +26,11 @@ For example:
 <br/>
 <img src="https://i.imgur.com/aMicdY0.png"/>
 <br/>
+<br/>
 Renders into:
 <br/>
 <img src="https://i.imgur.com/DnTnRdn.png"/>
-
+<br/>
 ## Views
 
 #### Landing
