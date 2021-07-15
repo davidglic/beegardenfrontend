@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
 import './Verify.css'
 
-const apiRoute = "http://localhost:8000/"
+const apiRoute = "https://littlebeegardenbackend.herokuapp.com/"
 
 const Verify = (props) => {
 

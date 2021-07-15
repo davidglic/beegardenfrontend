@@ -6,7 +6,7 @@ import DOMPurify from 'dompurify'
 
 import './articles.css'
 
-const apiRoute = "http://localhost:8000/"
+const apiRoute = "https://littlebeegardenbackend.herokuapp.com/"
 
 //error Title and HTML for instances where article is not found by ID.
 const errorArticle = {

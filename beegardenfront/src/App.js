@@ -18,7 +18,7 @@ import Error from './components/Error';
 import Verify from './components/user/Verify';
 import Info from './components/user/Info'
 
-const apiRoute = "http://localhost:8000/"
+const apiRoute = "https://littlebeegardenbackend.herokuapp.com/"
 
 class App extends Component {
   constructor(props){

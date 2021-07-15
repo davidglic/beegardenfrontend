@@ -8,7 +8,7 @@ function isEqual(a,b){
     return false
 }
 
-const apiRoute = "http://localhost:8000/"
+const apiRoute = "https://littlebeegardenbackend.herokuapp.com/"
 
 //Main component
 class LoginReg extends Component {
